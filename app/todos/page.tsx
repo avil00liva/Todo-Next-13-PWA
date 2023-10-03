@@ -13,11 +13,14 @@ const Todos = (props: Props) => {
   const [addTask, setAddTask] = useState(false)
   const [task, setTask] = useState({id: new Date().getTime(), title: "", description: "", tags: [], done: false})
 
+  useEffect(() => {
+    const storedTodos = localStorage.getItem("TodosPwa");
+    if (storedTodos) {
+      const parsedTodos = JSON.parse(storedTodos);
+      setTodos(parsedTodos);
+    }
+  }, []);
   
-  useEffect(()=>{
-    const getTodos = JSON.parse(localStorage.getItem("TodosPwa"))
-    setTodos(getTodos)
-  }, [])
 
   const openAddTask = () => {
       setAddTask(prevState => !prevState)

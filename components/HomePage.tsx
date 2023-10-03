@@ -13,10 +13,14 @@ const HomePage = () => {
 
     const [todos, setTodos] = useState([])
 
-    useEffect(()=>{
-        const getTodos = JSON.parse(localStorage.getItem("TodosPwa"))
-        setTodos(getTodos)
-    }, [])
+    useEffect(() => {
+      const storedTodos = localStorage.getItem("TodosPwa");
+      if (storedTodos) {
+        const parsedTodos = JSON.parse(storedTodos);
+        setTodos(parsedTodos);
+      }
+    }, []);
+    
     
     console.log("TODOSSS: ", todos)
 
