@@ -1,10 +1,18 @@
 "use client";
 import React, {useState} from 'react'
 
+interface Todo {
+    id: string | number
+    title: string
+    description: string
+    tags: string[]
+    done: boolean
+}
+
 type Props = {
     close: ()=> void
-    task: {}
-    inputsHandler: (e: React.ChangeEvent<HTMLInputElement>)=> void
+    task: Todo
+    inputsHandler: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>)=> void
     handleCheckboxChange: (e: React.ChangeEvent<HTMLInputElement>)=> void
     saveTodo: (task: {}) => void
 }

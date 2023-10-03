@@ -3,17 +3,19 @@ import React, { useState } from 'react'
 import EditTaskModal from './EditTaskModal'
 import TodoCardMenu from './TodoCardMenu'
 
+interface Todo {
+    id: string | number
+    title: string
+    description: string
+    tags: string[]
+    done: boolean
+}
+
 type Props = {
-    todo: {
-        id: number | string
-        title: string
-        description: string
-        done: boolean
-        tags: []
-    }
-    setTodos: React.Dispatch<React.SetStateAction<never[]>>
-    todos: []
-    homepage: boolean | null
+  todo: Todo
+  todos: Todo[]
+  setTodos: (todos: Todo[]) => void
+  homepage: boolean | null
 }
 
 const TodoCard = ({todo, setTodos, todos, homepage}: Props) => {
@@ -53,7 +55,7 @@ const TodoCard = ({todo, setTodos, todos, homepage}: Props) => {
             [name]: value})
     }
     const handleEditCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value, checked } = e.target;
+        const { name, value, checked } = e.currentTarget;
     
         const updatedTags = [...task.tags];
     

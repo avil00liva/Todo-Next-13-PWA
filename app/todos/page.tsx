@@ -97,7 +97,7 @@ const Todos = (props: Props) => {
       {todos.length === 0 && <div>You have 0 tasks</div>}
       {todos.length !== 0 && todos.map((td) => {
         return (
-          <TodoCard todo={td} key={td.id} todos={todos} setTodos={setTodos} />
+          <TodoCard homepage={false} todo={td} key={td.id} todos={todos} setTodos={setTodos} />
         )
       })}
       {addTask && <NewTaskModal 

@@ -7,6 +7,14 @@ import Image from 'next/image'
 import NewTaskModal from './NewTaskModal'
 import TodoCard from './TodoCard';
 
+interface Todo {
+  id: string | number
+  title: string
+  description: string
+  tags: string[]
+  done: boolean
+}
+
 const HomePage = () => {
     const [addTask, setAddTask] = useState(false)
     const [task, setTask] = useState({id: new Date().getTime(), title: "", description: "", tags: [], done: false})
@@ -32,7 +40,7 @@ const HomePage = () => {
         setAddTask(false)
     }
 
-    const inputsHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputsHandler = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const {name, value} = e.target
         setTask({...task, 
             [name]: value})
@@ -68,8 +76,6 @@ const HomePage = () => {
         setTask({id: new Date().getTime(), title: "", description: "", tags: [], done: false})
     }
 
-    const homepage = true
-
   return (
     <div className='w-full min-h-screen p-4'>
         <section className='mt-10 flex flex-col items-center'>
@@ -98,7 +104,9 @@ const HomePage = () => {
             saveTodo={saveTodo}
         />
         }
-        {todos.length ? <TodoCard homepage={homepage} todo={todos.at(-1)} /> : ""}
+        {todos.length ? <TodoCard homepage={true} todo={todos[todos.length - 1]} todos={[]} setTodos={function (todos: Todo[]): void {
+        throw new Error('Function not implemented.');
+      } } /> : ""}
         <Link className='underline text-blue-950 cursor-pointer text-lg' href={"/todos"}>View more..</Link>
     </div>
   )
