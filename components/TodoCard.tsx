@@ -106,7 +106,7 @@ const TodoCard = ({todo, setTodos, todos, homepage}: Props) => {
               </>
             }
           </div>
-          <p className={`mb-2 break-words ${todo?.done ? "line-through" : ""}`}>
+          <p className={`mb-2 break-words font-bold ${todo?.done ? "line-through" : ""}`}>
               {todo.description}
           </p>
           <div className='flex items-center justify-between'>
